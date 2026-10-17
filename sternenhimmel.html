@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sternenhimmel</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .stern {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      animation: funkeln var(--dauer) ease-in-out infinite;
+      animation-delay: var(--verzoegerung);
+    }
+
+    @keyframes funkeln {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50%      { opacity: 1;   transform: scale(1.2); box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8); }
+    }
+
+    h1 {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+      padding: 0 16px;
+      text-align: center;
+      color: #f0f4ff;
+      font-weight: 300;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 20px rgba(160, 190, 255, 0.6);
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hallo aus der Cloud</h1>
+
+  <script>
+    const anzahl = 200;
+    for (let i = 0; i < anzahl; i++) {
+      const stern = document.createElement('div');
+      const groesse = Math.random() * 2 + 1;
+      stern.className = 'stern';
+      stern.style.width = groesse + 'px';
+      stern.style.height = groesse + 'px';
+      stern.style.left = Math.random() * 100 + 'vw';
+      stern.style.top = Math.random() * 100 + 'vh';
+      stern.style.setProperty('--dauer', (Math.random() * 3 + 2) + 's');
+      stern.style.setProperty('--verzoegerung', (Math.random() * 5) + 's');
+      document.body.appendChild(stern);
+    }
+  </script>
+</body>
+</html>
